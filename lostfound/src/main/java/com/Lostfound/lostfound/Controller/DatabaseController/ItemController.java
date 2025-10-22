@@ -1,8 +1,5 @@
 package com.Lostfound.lostfound.Controller.DatabaseController;
 
-import com.Lostfound.lostfound.Controller.Utils.JwtUtil;
-import com.Lostfound.lostfound.Model.Item;
-import com.Lostfound.lostfound.service.ItemService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

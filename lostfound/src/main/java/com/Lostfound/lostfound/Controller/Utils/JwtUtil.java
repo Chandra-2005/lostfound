@@ -1,6 +1,4 @@
 package com.Lostfound.lostfound.Controller.Utils;
-
-import com.Lostfound.lostfound.Model.user;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;

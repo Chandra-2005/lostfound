@@ -1,12 +1,10 @@
 package com.Lostfound.lostfound.service;
 
-import com.Lostfound.lostfound.Model.Item;
 import com.Lostfound.lostfound.Repository.ItemRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
-
 @Service
 public class ItemService {
 
