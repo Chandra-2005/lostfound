@@ -1,6 +1,5 @@
 package com.Lostfound.lostfound.Controller.Utils;
 import com.Lostfound.lostfound.Model.Item;
-import com.Lostfound.lostfound.Model.user;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -16,9 +15,9 @@ public class JwtUtil {
     private static final String SECRET_KEY = "MySuperSecretKey";
     private static final long EXPIRATION_TIME = 24 * 60 * 60 * 1000; // 24 hours
 
-    public String generateToken(user user) {
+    public String generateToken(Item Item) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("userid", user.getId());
+        claims.put("Itemid", Item.getId());
 
 // Print claims to console
         System.out.println("JWT Claims:");
@@ -36,15 +35,15 @@ public class JwtUtil {
 
     // Validate token
     public boolean validateToken(String token, String email) {
-        String tokenEmail = getuserid(token);
+        String tokenEmail = getItemid(token);
         return tokenEmail.equals(email) && !isTokenExpired(token);
     }
 
     // Get email from token
-    public static String getuserid(String token) {
+    public static String getItemid(String token) {
         System.out.println("✅ Item ID from JWT : " + token);
 
-        return getAllClaimsFromToken(token).get("userid", String.class);
+        return getAllClaimsFromToken(token).get("Itemid", String.class);
 
     }
 
