@@ -1,5 +1,6 @@
 package com.Lostfound.lostfound.Controller.Utils;
-import com.Lostfound.lostfound.Model.Item;
+
+import com.Lostfound.lostfound.Model.user;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -12,12 +13,13 @@ import java.util.Map;
 @Component
 public class JwtUtil {
 
-    private static final String SECRET_KEY = "MySuperSecretKey";
+    private static final String SECRET_KEY = "SecretKey12345";
     private static final long EXPIRATION_TIME = 24 * 60 * 60 * 1000; // 24 hours
 
-    public String generateToken(Item Item) {
+    // Generate token from Candidate object with all fields
+    public String generateToken(user user) {
         Map<String, Object> claims = new HashMap<>();
-        claims.put("Itemid", Item.getId());
+        claims.put("userid", user.getId());
 
 // Print claims to console
         System.out.println("JWT Claims:");
@@ -35,25 +37,26 @@ public class JwtUtil {
 
     // Validate token
     public boolean validateToken(String token, String email) {
-        String tokenEmail = getItemid(token);
+        String tokenEmail = getuserid(token);
         return tokenEmail.equals(email) && !isTokenExpired(token);
     }
 
     // Get email from token
-    public static String getItemid(String token) {
-        System.out.println("✅ Item ID from JWT : " + token);
+    public static String getuserid(String token) {
+        System.out.println("✅ user ID from JWT : " + token);
 
-        return getAllClaimsFromToken(token).get("Itemid", String.class);
+        return getAllClaimsFromToken(token).get("userid", String.class);
 
     }
 
-    // Get all claims from token
+    // Get all claims from toke
     public static Claims getAllClaimsFromToken(String token) {
-        System.out.println("✅ Item ID from JWT (here): " + token);
-
+        System.out.println("✅ user ID from JWT (here): " + token);
+        String tokens = token.substring(7);
         return Jwts.parser()
                 .setSigningKey(SECRET_KEY)
-                .parseClaimsJws(token)
+                .parseClaimsJws(tokens)
+
                 .getBody();
     }
 

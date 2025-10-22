@@ -19,6 +19,7 @@ public class Item {
 
     @Id
     private String id;
+    private String userid;
     private String name;
     private String location;
     private String type; // LOST / FOUND
